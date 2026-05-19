@@ -2,8 +2,8 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Messenger P2P Ultimate - กล้องสลับได้ & สำรองแชท 1 เดือน</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messenger P2P Ultimate - แชท ส่งรูป วิดีโอคอล & ตั้งชื่อเล่น</title>
     <!-- นำเข้า Tailwind CSS v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- นำเข้า Font Awesome สำหรับไอคอน -->
@@ -16,34 +16,30 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-gray-100 font-sans h-screen flex justify-center items-center p-0 md:p-4 select-none">
+<body class="bg-gray-100 font-sans h-screen flex justify-center items-center p-2 md:p-4">
 
-    <!-- กรอบหลักของแอปพลิเคชัน รองรับ Mobile Fullscreen -->
+    <!-- กรอบหลักของแอปพลิเคชัน -->
     <div class="w-full h-full max-w-5xl md:h-[90vh] bg-white md:rounded-2xl md:shadow-2xl flex flex-col md:flex-row overflow-hidden relative">
         
-        <!-- ================= SIDEBAR: จัดการการเชื่อมต่อ, ชื่อเล่น & ล้างแชท ================= -->
-        <div id="sidebar" class="w-full md:w-80 border-b md:border-b-0 md:border-r border-gray-200 flex flex-col bg-white shrink-0 p-4 space-y-3">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h1 class="text-xl font-bold text-gray-900 tracking-tight"><i class="fa-solid fa-bolt mr-2 text-blue-500"></i>Messenger P2P</h1>
-                    <p class="text-xs text-gray-500 mt-0.5">ระบบสำรองแชทอัตโนมัติ 1 เดือน</p>
-                </div>
-                <!-- ปุ่มสลับหน้ากากซ่อนแถบซ้ายบนมือถือเพื่อให้แชทเต็มตา -->
-                <button onclick="toggleSidebarMobile()" class="md:hidden text-gray-500 p-2"><i class="fa-solid fa-comments"></i></button>
+        <!-- ================= SIDEBAR: จัดการการเชื่อมต่อ & ตั้งชื่อเล่น ================= -->
+        <div class="w-full md:w-80 border-b md:border-b-0 md:border-r border-gray-200 flex flex-col bg-white shrink-0 p-4 space-y-4">
+            <div>
+                <h1 class="text-xl font-bold text-gray-900 tracking-tight"><i class="fa-solid fa-bolt mr-2 text-blue-500"></i>Messenger P2P</h1>
+                <p class="text-xs text-gray-500 mt-1">แชทตรง, ส่งรูปพรีวิวทันที, วิดีโอคอล และตั้งชื่อเล่นเฉพาะตัว</p>
             </div>
 
-            <!-- ส่วนตั้งชื่อเล่นของตัวเอง -->
-            <div class="bg-gray-50 p-2.5 rounded-xl border border-gray-200 space-y-1.5">
-                <span class="text-xs font-semibold text-gray-600 block"><i class="fa-solid fa-user-pen mr-1 text-gray-500"></i> ชื่อเล่นของคุณ:</span>
+            <!-- ใหม่: ส่วนตั้งชื่อเล่นของตัวเอง -->
+            <div class="bg-gray-50 p-3 rounded-xl border border-gray-200 space-y-2">
+                <span class="text-xs font-semibold text-gray-600 block"><i class="fa-solid fa-user-pen mr-1 text-gray-500"></i> ตั้งชื่อเล่นของคุณ:</span>
                 <div class="flex space-x-2">
-                    <input type="text" id="my-nickname-input" value="ผู้ใช้งาน" placeholder="พิมพ์ชื่อเล่น..." class="w-full bg-white px-3 py-1.5 text-sm rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 font-medium text-gray-700">
-                    <button onclick="updateMyNickname()" class="bg-gray-800 hover:bg-gray-900 text-white text-xs px-2.5 py-1.5 rounded-lg transition font-medium shrink-0">บันทึก</button>
+                    <input type="text" id="my-nickname-input" value="ผู้ใช้งาน" placeholder="พิมพ์ชื่อเล่นที่นี่..." class="w-full bg-white px-3 py-1.5 text-sm rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 font-medium text-gray-700">
+                    <button onclick="updateMyNickname()" class="bg-gray-800 hover:bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg transition font-medium shrink-0">บันทึก</button>
                 </div>
             </div>
 
             <!-- แสดง ID ตัวเอง -->
-            <div class="bg-blue-50 p-2.5 rounded-xl border border-blue-100">
-                <span class="text-xs font-semibold text-blue-600 block mb-0.5">รหัสแชทของคุณ:</span>
+            <div class="bg-blue-50 p-3 rounded-xl border border-blue-100">
+                <span class="text-xs font-semibold text-blue-600 block mb-1">รหัสแชทของคุณ:</span>
                 <div class="flex items-center space-x-2">
                     <input type="text" id="my-id-input" class="w-full bg-white px-2 py-1 text-sm rounded border border-gray-200 font-mono font-bold text-gray-700" readonly>
                     <button onclick="copyMyID()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2.5 py-1.5 rounded transition"><i class="fa-regular fa-copy"></i></button>
@@ -51,10 +47,10 @@
             </div>
 
             <!-- ใส่ ID เพื่อน -->
-            <div class="space-y-1.5">
-                <span class="text-xs font-semibold text-gray-600 block">วางรหัสของเพื่อน:</span>
+            <div class="space-y-2">
+                <span class="text-xs font-semibold text-gray-600 block">วางรหัสของเพื่อนเพื่อเชื่อมต่อ:</span>
                 <div class="flex flex-col space-y-2">
-                    <input type="text" id="peer-id-input" placeholder="วางรหัสของเพื่อน..." class="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:outline-none">
+                    <input type="text" id="peer-id-input" placeholder="วางรหัสของเพื่อนที่นี่..." class="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:outline-none">
                     <button onclick="connectToPeer()" class="w-full bg-green-600 hover:bg-green-700 text-white text-sm font-semibold py-2 rounded-xl transition flex items-center justify-center"><i class="fa-solid fa-plug mr-2"></i>เชื่อมต่อแชท</button>
                 </div>
             </div>
@@ -64,11 +60,8 @@
                 ⚠️ กำลังเปิดระบบสัญญาณ...
             </div>
 
-            <!-- ปุ่มสำหรับเคลียร์ประวัติแชทด้วยตนเองหากต้องการ -->
-            <button onclick="clearAllHistory()" class="w-full border border-gray-200 hover:bg-red-50 text-gray-500 hover:text-red-600 text-xs py-1.5 rounded-lg transition font-medium"><i class="fa-solid fa-trash-can mr-1"></i>ล้างประวัติแชทที่บันทึกไว้</button>
-
             <!-- หน้าต่างกล้องถ่ายรูป/อัดวิดีโอสั้นส่งเข้าแชท -->
-            <div id="camera-box" class="hidden flex-col bg-gray-900 p-2.5 rounded-2xl space-y-2">
+            <div id="camera-box" class="hidden flex-col bg-gray-900 p-3 rounded-2xl space-y-2">
                 <div class="flex justify-between items-center text-white text-xs">
                     <span><i class="fa-solid fa-camera text-red-500 mr-1 animate-pulse"></i> โหมดกล้องส่งมีเดีย</span>
                     <button onclick="closeCamera()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
@@ -77,7 +70,7 @@
                     <video id="camera-stream" autoplay playsinline class="w-full h-full object-cover"></video>
                 </div>
                 <div class="flex justify-between gap-2">
-                    <button id="capture-btn" onclick="takePhoto()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs py-2 rounded-xl font-medium"><i class="fa-solid fa-camera mr-1"></i>ถ่ายรูป</button>
+                    <button id="capture-btn" onclick="takePhoto()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs py-2 rounded-xl font-medium"><i class="fa-solid fa-camera mr-1"></i>ถ่ายรูปส่ง</button>
                     <button id="record-btn" onclick="toggleVideoRecord()" class="flex-1 bg-red-600 hover:bg-red-700 text-white text-xs py-2 rounded-xl font-medium"><i class="fa-solid fa-video mr-1"></i><span id="record-btn-text">อัดวิดีโอ</span></button>
                 </div>
             </div>
@@ -87,18 +80,17 @@
         <div class="flex-1 h-full flex-col bg-white flex relative">
             
             <!-- ส่วนหัวแชท -->
-            <div class="h-16 border-b border-gray-200 px-4 flex justify-between items-center bg-white shrink-0">
+            <div class="h-16 border-b border-gray-200 px-4 flex justify-between items-center bg-white">
                 <div class="flex items-center space-x-3">
-                    <button onclick="toggleSidebarMobile()" class="md:hidden text-gray-500 p-1 text-lg"><i class="fa-solid fa-bars"></i></button>
                     <div id="user-avatar" class="w-10 h-10 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-bold">?</div>
                     <div>
                         <h2 id="chat-partner-name" class="text-sm font-bold text-gray-900">รอเชื่อมต่อกับเพื่อน...</h2>
-                        <p id="chat-partner-status" class="text-xs text-gray-400">ระบบสำรองข้อมูลเปิดใช้งานอยู่</p>
+                        <p id="chat-partner-status" class="text-xs text-gray-400">ส่งรหัสเพื่อเริ่มการสนทนา</p>
                     </div>
                 </div>
                 
                 <!-- ปุ่มเปิดสาย Video Call -->
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-3">
                     <button id="video-call-trigger" onclick="startVideoCall()" class="w-10 h-10 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-full flex items-center justify-center transition opacity-50 pointer-events-none cursor-pointer" title="โทรเปิดกล้อง (Video Call)">
                         <i class="fa-solid fa-video text-base"></i>
                     </button>
@@ -107,60 +99,51 @@
 
             <!-- กล่องแสดงข้อความและรูปภาพทั้งหมด -->
             <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-3 bg-white flex flex-col no-scrollbar">
-                <!-- ประวัติแชทเก่าจะถูกโหลดขึ้นมาวางตรงนี้อัตโนมัติ -->
+                <div class="text-center text-xs text-gray-400 my-auto p-6" id="welcome-msg">
+                    <i class="fa-solid fa-comments text-4xl text-gray-300 mb-2 block"></i>
+                    ตั้งชื่อเล่นของคุณทางด้านซ้าย แล้วแชร์รหัสเพื่อเริ่มคุยกันในชื่อคุณได้ทันที!
+                </div>
             </div>
 
-            <!-- แถบเครื่องมือป้อนข้อความด้านล่าง (ออกแบบให้พิมพ์ง่ายทั้งบนคอมและมือถือ) -->
-            <div class="p-3 border-t border-gray-200 bg-white flex items-center space-x-3 shrink-0">
-                <div class="flex space-x-3 text-blue-500 text-xl pl-1 shrink-0">
+            <!-- แถบเครื่องมือป้อนข้อความด้านล่าง -->
+            <div class="p-3 border-t border-gray-200 bg-white flex items-center space-x-3">
+                <div class="flex space-x-3 text-blue-500 text-xl pl-1">
                     <button id="camera-trigger" onclick="openCamera()" class="hover:text-blue-600 transition opacity-50 pointer-events-none" title="ถ่ายภาพหรืออัดวิดีโอสดลงแชท"><i class="fa-solid fa-camera"></i></button>
                     <label id="file-trigger" title="ส่งรูปภาพหรือไฟล์ในเครื่อง" class="hover:text-blue-600 transition cursor-pointer opacity-50 pointer-events-none">
                         <i class="fa-solid fa-paperclip"></i>
-                        <input type="file" id="file-input" class="hidden" onchange="handleFileSelect(event)" accept="image/*,video/*">
+                        <input type="file" id="file-input" class="hidden" onchange="handleFileSelect(event)">
                     </label>
                 </div>
                 
-                <form id="chat-form" onsubmit="sendMessage(event)" class="flex-1 flex items-center bg-gray-100 rounded-full px-4 py-2">
-                    <input id="message-input" type="text" placeholder="พิมพ์ข้อความตอบกลับหาเพื่อน..." class="w-full bg-transparent text-sm text-gray-800 focus:outline-none" disabled autocomplete="off">
+                <form id="chat-form" onsubmit="sendMessage(event)" class="flex-1 flex items-center bg-gray-100 rounded-full px-4 py-1.5">
+                    <input id="message-input" type="text" placeholder="พิมพ์ข้อความตอบกลับหาเพื่อน..." class="w-full bg-transparent text-sm text-gray-800 focus:outline-none" disabled>
                 </form>
                 
-                <button onclick="sendMessage(event)" class="text-blue-500 hover:text-blue-600 text-xl pr-1 transition shrink-0">
+                <button onclick="sendMessage(event)" class="text-blue-500 hover:text-blue-600 text-xl pr-1 transition">
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>
             </div>
         </div>
 
-        <!-- ================= ป๊อปอัปหน้าจอวิดีโอคอลคุยสด (มีปุ่มสลับกล้องหน้า-หลัง) ================= -->
-        <div id="video-call-overlay" class="hidden fixed inset-0 bg-slate-950/95 z-50 flex-col justify-between p-4 animate-fade-in">
-            <!-- หัวข้อบอกสถานะการคอล -->
-            <div class="flex justify-between items-center text-white px-2 shrink-0">
+        <!-- ================= ป๊อปอัปหน้าจอวิดีโอคอลคุยสด (Video Call Overlay) ================= -->
+        <div id="video-call-overlay" class="hidden fixed inset-0 md:absolute bg-slate-950/95 z-50 flex-col justify-between p-4 animate-fade-in">
+            <div class="flex justify-between items-center text-white px-2">
                 <div class="flex items-center space-x-2">
                     <span class="w-2.5 h-2.5 bg-red-500 rounded-full animate-ping"></span>
                     <span class="text-sm font-medium tracking-wide" id="video-call-status-text">กำลังวิดีโอคอล...</span>
                 </div>
-                <span class="text-xs text-gray-400">P2P Encrypted</span>
+                <span class="text-xs text-gray-400">สัญญาณตรง P2P</span>
             </div>
 
-            <!-- หน้าต่างสลับกล้องแบบซ้อน (Picture-in-Picture Style) -->
-            <div class="flex-1 my-3 relative flex items-center justify-center bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
-                <!-- หน้าต่างกล้องของเพื่อน (รูปใหญ่เต็มจอ) -->
+            <div class="flex-1 my-4 relative flex items-center justify-center bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
                 <video id="remote-video" autoplay playsinline class="w-full h-full object-cover"></video>
-                
-                <!-- หน้าต่างกล้องของเราเอง (กรอบเล็กมุมขวาล่าง) -->
-                <div class="absolute bottom-4 right-4 w-24 h-36 md:w-36 md:h-52 bg-slate-900 rounded-xl overflow-hidden shadow-xl border-2 border-white/20 z-10">
+                <div class="absolute bottom-4 right-4 w-28 h-40 md:w-36 md:h-52 bg-slate-900 rounded-xl overflow-hidden shadow-xl border-2 border-white/20 z-10">
                     <video id="local-video" autoplay playsinline muted class="w-full h-full object-cover"></video>
                 </div>
             </div>
 
-            <!-- แถบปุ่มควบคุม (วางสาย + ใหม่: ปุ่มสลับกล้องหน้าหลัง) -->
-            <div class="flex justify-center items-center space-x-6 py-2 shrink-0">
-                <!-- ใหม่: ปุ่มสลับกล้องหน้า-หลัง รองรับทั้งคอมและมือถือ -->
-                <button onclick="flipVideoCallCamera()" class="w-12 h-12 bg-slate-800 hover:bg-slate-700 text-white rounded-full flex items-center justify-center shadow-md transition-transform active:scale-95 cursor-pointer" title="สลับกล้องหน้า/หลัง">
-                    <i class="fa-solid fa-camera-rotate text-lg"></i>
-                </button>
-                
-                <!-- ปุ่มวางสาย -->
-                <button onclick="endVideoCall()" class="w-16 h-16 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-lg shadow-red-900/40 transition-transform active:scale-95 cursor-pointer" title="วางสาย">
+            <div class="flex justify-center items-center py-2">
+                <button onclick="endVideoCall()" class="w-16 h-16 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-lg shadow-red-900/40 transition-transform active:scale-95 cursor-pointer">
                     <i class="fa-solid fa-phone-slash text-xl"></i>
                 </button>
             </div>
@@ -181,7 +164,6 @@
         
         let myNickname = "ผู้ใช้งาน";
         let peerNickname = "เพื่อน";
-        let currentFacingMode = "user"; // "user" = กล้องหน้า, "environment" = กล้องหลัง
 
         const myIdInput = document.getElementById('my-id-input');
         const peerIdInput = document.getElementById('peer-id-input');
@@ -192,12 +174,6 @@
         const fileTrigger = document.getElementById('file-trigger');
         const videoCallTrigger = document.getElementById('video-call-trigger');
         const myNicknameInput = document.getElementById('my-nickname-input');
-
-        // เริ่มต้นระบบและโหลดประวัติแชทเก่าทันทีที่เปิดเว็บ
-        function initApp() {
-            loadChatHistory(); // ดึงประวัติที่บันทึกไว้ในเครื่องขึ้นมาโชว์
-            initPeer();        // เปิดระบบเชื่อมต่อ P2P
-        }
 
         // เริ่มต้นเครือข่ายส่งสัญญาณ PeerJS
         function initPeer() {
@@ -216,18 +192,13 @@
 
             // ดักฟังสายเรียกเข้าคอลวิดีโอ
             peer.on('call', async (call) => {
-                if (confirm(`🚨 ${peerNickname} กำลังวิดีโอคอลเข้ามาหาคุณ! ต้องการรับสายหรือไม่?`)) {
+                if (confirm(`🚨 ${peerNickname} กำลังเปิดกล้อง Video Call เข้ามาหาคุณ! ต้องการรับสายหรือไม่?`)) {
                     try {
                         document.getElementById('video-call-overlay').classList.remove('hidden');
                         document.getElementById('video-call-overlay').classList.add('flex');
                         document.getElementById('video-call-status-text').innerText = `กำลังคอลคุยกับ ${peerNickname}`;
 
-                        // เริ่มต้นดึงกล้องหน้ามาคุยก่อนเป็นค่าเริ่มต้น
-                        currentFacingMode = "user";
-                        callStream = await navigator.mediaDevices.getUserMedia({ 
-                            video: { facingMode: currentFacingMode }, 
-                            audio: true 
-                        });
+                        callStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                         document.getElementById('local-video').srcObject = callStream;
 
                         call.answer(callStream); 
@@ -248,11 +219,14 @@
             });
         }
 
+        // ฟังก์ชันอัปเดตชื่อเล่นของตนเอง และส่งข้อมูลชื่อเล่นไปให้เพื่อนทันทีหากเชื่อมต่ออยู่
         function updateMyNickname() {
             const val = myNicknameInput.value.trim();
             if (val) {
                 myNickname = val;
                 alert(`เปลี่ยนชื่อเล่นของคุณเป็น "${myNickname}" เรียบร้อย!`);
+                
+                // หากกำลังเชื่อมต่อกับเพื่อนอยู่ ให้แอบส่งสัญญาณอัปเดตชื่อเล่นไปให้ฝั่งนู้นด้วย
                 if (dataConnection && dataConnection.open) {
                     dataConnection.send({ type: 'update-nickname', nickname: myNickname });
                 }
@@ -270,43 +244,51 @@
             setupConnectionListeners();
         }
 
+        // ปลดล็อกระบบเมื่อเชื่อมต่อสำเร็จ
         function setupConnectionListeners() {
             dataConnection.on('open', () => {
                 statusBadge.className = "text-xs font-medium py-1.5 px-3 rounded-lg bg-purple-100 text-purple-800 text-center";
-                statusBadge.innerHTML = "🤝 เชื่อมต่อสำเร็จ! เริ่มคุยได้เลย";
+                statusBadge.innerHTML = "🤝 เชื่อมต่อสำเร็จ! พิมพ์คุยและคอลได้เลย";
                 
                 messageInput.removeAttribute('disabled');
                 cameraTrigger.classList.remove('opacity-50', 'pointer-events-none');
                 fileTrigger.classList.remove('opacity-50', 'pointer-events-none');
                 videoCallTrigger.classList.remove('opacity-50', 'pointer-events-none'); 
                 
+                // ส่งชื่อเล่นของเราไปทักทายเครื่องเพื่อนทันทีที่แมตช์สายสำเร็จ
                 myNickname = myNicknameInput.value.trim() || "ผู้ใช้งาน";
                 dataConnection.send({ type: 'update-nickname', nickname: myNickname });
 
                 refreshChatHeader();
+                
+                if(document.getElementById('welcome-msg')) document.getElementById('welcome-msg').remove();
             });
 
+            // รอรับข้อมูล (ข้อความ, มีเดีย, หรือคำสั่งเปลี่ยนชื่อเล่น)
             dataConnection.on('data', (data) => {
                 if (data.type === 'update-nickname') {
+                    // หากเพื่อนส่งชื่อเล่นมา ให้อัปเดตชื่อแสดงผลบนหน้าจอของเราทันที
                     peerNickname = data.nickname;
                     refreshChatHeader();
                 } else {
                     renderIncomingData(data, false);
-                    saveMessageToStorage(data, false); // บันทึกข้อความของเพื่อนลงเครื่องเรา
                 }
             });
         }
 
+        // ฟังก์ชันรีเฟรชหน้าตาแถบหัวแชทด้านบนให้เป็นชื่อเล่นล่าสุด
         function refreshChatHeader() {
             document.getElementById('chat-partner-name').innerText = peerNickname;
             document.getElementById('chat-partner-status').innerText = "🟢 ออนไลน์สายตรง (วิดีโอคอลพร้อมใช้งาน)";
+            
+            // ดึงอักษรตัวแรกของชื่อเพื่อนมาทำเป็นโลโก้โปรไฟล์วงกลม
             const firstChar = peerNickname.charAt(0).toUpperCase() || "👤";
             const avatar = document.getElementById('user-avatar');
             avatar.innerText = firstChar;
-            avatar.className = "w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-base shrink-0 select-none";
+            avatar.className = "w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-base select-none shadow-sm";
         }
 
-        // --- 🎥 ระบบ VIDEO CALL & ฟังก์ชันใหม่: สลับกล้องหน้า-หลัง ---
+        // --- 🎥 ระบบการทำงานฟังก์ชัน VIDEO CALL ---
         async function startVideoCall() {
             if (!dataConnection) return;
             const peerId = dataConnection.peer;
@@ -316,11 +298,7 @@
                 document.getElementById('video-call-overlay').classList.add('flex');
                 document.getElementById('video-call-status-text').innerText = `กำลังโทรหา ${peerNickname}...`;
 
-                currentFacingMode = "user"; // เริ่มต้นด้วยกล้องหน้าเสมอ
-                callStream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: currentFacingMode }, 
-                    audio: true 
-                });
+                callStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                 document.getElementById('local-video').srcObject = callStream;
 
                 mediaCall = peer.call(peerId, callStream);
@@ -335,105 +313,11 @@
             }
         }
 
-        // ใหม่: ฟังก์ชันสลับกล้องแบบเรียลไทม์ รองรับมือถือสมบูรณ์แบบ
-        async function flipVideoCallCamera() {
-            if (!callStream || !mediaCall) return;
-
-            // สลับโหมดกล้อง
-            currentFacingMode = (currentFacingMode === "user") ? "environment" : "user";
-            
-            // ดับแทร็กวิดีโอเดิมเพื่อเคลียร์สถานะกล้องตัวเก่า
-            const videoTrack = callStream.getVideoTracks()[0];
-            if (videoTrack) videoTrack.stop();
-
-            try {
-                // ขอมีเดียสตรีมกล้องตัวใหม่ (กล้องหลัง หรือ กล้องถัดไป)
-                const newStream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: currentFacingMode }
-                });
-
-                const newVideoTrack = newStream.getVideoTracks()[0];
-                
-                // นำแทร็กวิดีโอตัวใหม่ไปใส่แทนที่ในระบบ Stream เดิมเพื่อให้อีกฝ่ายเห็นภาพเปลี่ยนทันที
-                if (callStream && callStream.addTrack) {
-                    callStream.removeTrack(videoTrack);
-                    callStream.addTrack(newVideoTrack);
-                }
-
-                // สลับวิดีโอที่แสดงผลบนกรอบเล็กในหน้าจอเราด้วย
-                document.getElementById('local-video').srcObject = null;
-                document.getElementById('local-video').srcObject = callStream;
-
-                // ส่งแทร็กกล้องตัวใหม่ข้ามเครือข่ายไปอัปเดตบนหน้าจอเพื่อนผ่าน WebRTC Peer
-                const senders = mediaCall.peerConnection.getSenders();
-                const sender = senders.find(s => s.track && s.track.kind === 'video');
-                if (sender) {
-                    sender.replaceTrack(newVideoTrack);
-                }
-            } catch (err) {
-                alert("อุปกรณ์นี้ไม่สามารถสลับโหมดกล้องนี้ได้: " + err.message);
-            }
-        }
-
         function endVideoCall() {
             if (mediaCall) mediaCall.close();
             if (callStream) callStream.getTracks().forEach(track => track.stop());
             document.getElementById('video-call-overlay').classList.add('hidden');
             document.getElementById('video-call-overlay').classList.remove('flex');
-        }
-
-        // --- 💾 ระบบสำรองประวัติแชท ย้อนหลังสูงสุด 1 เดือน (LocalStorage) ---
-        function saveMessageToStorage(data, isMe) {
-            let history = JSON.parse(localStorage.getItem('p2p_chat_history')) || [];
-            
-            // เพิ่มข้อมูลข้อความพร้อมบันทึกเวลาปัจจุบัน (Timestamp)
-            history.push({
-                data: data,
-                isMe: isMe,
-                timestamp: Date.now()
-            });
-
-            localStorage.setItem('p2p_chat_history', JSON.stringify(history));
-        }
-
-        function loadChatHistory() {
-            chatBox.innerHTML = "";
-            let history = JSON.parse(localStorage.getItem('p2p_chat_history')) || [];
-            const ONE_MONTH_MS = 30 * 24 * 60 * 60 * 1000; // เวลา 1 เดือนในหน่วยมิลลิวินาที
-            const now = Date.now();
-
-            // คัดกรองข้อมูล: เอาเฉพาะข้อมูลแชทที่อายุไม่เกิน 1 เดือนเท่านั้น
-            const validHistory = history.filter(item => {
-                return (now - item.timestamp) < ONE_MONTH_MS;
-            });
-
-            // เซฟประวัติที่ผ่านการคัดกรองกลับลงเครื่อง (ข้อมูลที่เกิน 1 เดือนจะถูกตัดทิ้งจุดนี้)
-            localStorage.setItem('p2p_chat_history', JSON.stringify(validHistory));
-
-            // แสดงผลแชทเก่าขึ้นหน้าจอ
-            if (validHistory.length > 0) {
-                validHistory.forEach(item => {
-                    renderIncomingData(item.data, item.isMe);
-                });
-            } else {
-                chatBox.innerHTML = `<div class="text-center text-xs text-gray-400 my-auto p-6" id="welcome-msg">
-                    <i class="fa-solid fa-clock-rotate-left text-4xl text-gray-300 mb-2 block"></i>
-                    ไม่มีประวัติแชทเก่าค้างอยู่ หรือแชทเก่าหมดอายุ (จำกัดเวลา 1 เดือน) เริ่มพิมพ์ข้อความเพื่อเริ่มบันทึกใหม่ได้เลย!
-                </div>`;
-            }
-        }
-
-        function clearAllHistory() {
-            if (confirm("คุณแน่ใจใช่ไหมว่าจะลบประวัติแชททั้งหมดที่เคยเซฟไว้ในเครื่องนี้ออกอย่างถาวร?")) {
-                localStorage.removeItem('p2p_chat_history');
-                loadChatHistory();
-            }
-        }
-
-        // ปุ่มซ่อน-แสดง Sidebar สำหรับมือถือจอเล็ก
-        function toggleSidebarMobile() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('hidden');
         }
 
         // --- ระบบส่งข้อความ รูปภาพ และ วิดีโอสั้นลงช่องแชท ---
@@ -442,12 +326,9 @@
             const text = messageInput.value.trim();
             if (!text || !dataConnection) return;
 
-            const payload = { type: 'text', content: text };
-            dataConnection.send(payload);
-            renderIncomingData(payload, true);
-            saveMessageToStorage(payload, true); // บันทึกข้อมูลแชทของเราลงเครื่องด้วย
+            dataConnection.send({ type: 'text', content: text });
+            renderIncomingData({ type: 'text', content: text }, true);
             messageInput.value = '';
-            if(document.getElementById('welcome-msg')) document.getElementById('welcome-msg').remove();
         }
 
         function handleFileSelect(event) {
@@ -465,8 +346,6 @@
                 const payload = { type: fileType, content: base64Data, name: file.name };
                 dataConnection.send(payload);
                 renderIncomingData(payload, true);
-                saveMessageToStorage(payload, true); // บันทึกไฟล์ที่ส่งลงสตอเรจ
-                if(document.getElementById('welcome-msg')) document.getElementById('welcome-msg').remove();
             };
             reader.readAsDataURL(file);
         }
@@ -501,9 +380,7 @@
             const payload = { type: 'image', content: base64Image, name: 'photo.jpg' };
             dataConnection.send(payload);
             renderIncomingData(payload, true);
-            saveMessageToStorage(payload, true);
             closeCamera();
-            if(document.getElementById('welcome-msg')) document.getElementById('welcome-msg').remove();
         }
 
         function toggleVideoRecord() {
@@ -522,15 +399,13 @@
                         const payload = { type: 'video', content: base64Video, name: 'video.mp4' };
                         dataConnection.send(payload);
                         renderIncomingData(payload, true);
-                        saveMessageToStorage(payload, true);
                     };
                     reader.readAsDataURL(videoBlob);
                     closeCamera();
-                    if(document.getElementById('welcome-msg')) document.getElementById('welcome-msg').remove();
                 };
                 mediaRecorder.start();
                 isRecordingVideo = true;
-                recordBtnText.innerText = "หยุดอัด";
+                recordBtnText.innerText = "กำลังอัด..กดหยุด";
                 recordBtn.className = "flex-1 bg-yellow-500 hover:bg-yellow-600 text-white text-xs py-2 rounded-xl font-medium animate-pulse";
             } else {
                 mediaRecorder.stop();
@@ -542,16 +417,16 @@
 
         function renderIncomingData(data, isMe) {
             const messageWrapper = document.createElement('div');
-            messageWrapper.className = isMe ? "flex items-end justify-end space-x-2 max-w-[85%] ml-auto" : "flex items-end space-x-2 max-w-[85%]";
+            messageWrapper.className = isMe ? "flex items-end justify-end space-x-2 max-w-[80%] ml-auto" : "flex items-end space-x-2 max-w-[80%]";
             let bubbleHTML = "";
 
             if (data.type === 'text') {
                 const bubbleClass = isMe ? "bubble-me px-4 py-2 rounded-2xl rounded-br-none" : "bg-gray-100 text-gray-800 px-4 py-2 rounded-2xl rounded-bl-none";
                 bubbleHTML = `<div class="${bubbleClass} text-sm shadow-sm break-words">${data.content}</div>`;
             } else if (data.type === 'image') {
-                bubbleHTML = `<div class="p-1 bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden shadow-sm"><img src="${data.content}" class="max-w-full rounded-xl max-h-64 object-cover block"></div>`;
+                bubbleHTML = `<div class="p-1 bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden shadow-sm shadow-gray-200"><img src="${data.content}" class="max-w-xs md:max-w-md rounded-xl max-h-72 object-cover block"></div>`;
             } else if (data.type === 'video') {
-                bubbleHTML = `<div class="p-1 bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden shadow-sm"><video src="${data.content}" controls class="max-w-full rounded-xl max-h-64 block bg-black"></video></div>`;
+                bubbleHTML = `<div class="p-1 bg-gray-100 border border-gray-200 rounded-2xl overflow-hidden shadow-sm"><video src="${data.content}" controls class="max-w-xs md:max-w-sm rounded-xl max-h-64 block bg-black"></video></div>`;
             } else if (data.type === 'file') {
                 const fileClass = isMe ? "bubble-me rounded-br-none" : "bg-gray-100 text-gray-800 rounded-bl-none";
                 bubbleHTML = `<div class="${fileClass} p-3 rounded-2xl text-sm shadow-sm"><i class="fa-solid fa-file-arrow-down mr-2"></i><a href="${data.content}" download="${data.name}" class="underline font-medium">${data.name}</a></div>`;
@@ -560,6 +435,7 @@
             if (isMe) {
                 messageWrapper.innerHTML = bubbleHTML;
             } else {
+                // ดึงอักษรตัวแรกของชื่อเพื่อนมาแปะหน้ากล่องข้อความฝั่งคนรับ
                 const firstChar = peerNickname.charAt(0).toUpperCase() || "👤";
                 messageWrapper.innerHTML = `<div class="w-7 h-7 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs shrink-0 select-none">${firstChar}</div>${bubbleHTML}`;
             }
@@ -574,8 +450,7 @@
             alert("คัดลอกรหัสแชทของคุณแล้ว ส่งรหัสนี้ให้เพื่อนเปิดในช่องฝั่งซ้ายเพื่อเริ่มเชื่อมต่อได้เลยครับ!");
         }
 
-        // เรียกใช้งานระบบทั้งหมดเมื่อเปิดหน้าเว็บ
-        initApp();
+        initPeer();
     </script>
 </body>
 </html>
